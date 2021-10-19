@@ -7,7 +7,7 @@
 
 <p>
   <strong>賃料:</strong>
-  <%= @property.rent %>
+  <%= @property.rent %>万円
 </p>
 
 <p>
@@ -17,7 +17,7 @@
 
 <p>
   <strong>築年数:</strong>
-  <%= @property.build_year %>
+  築<%= @property.build_year %>年
 </p>
 
 <p>
@@ -40,7 +40,7 @@
 
     <p>
       <strong>徒歩分数:</strong>
-      <%= @station.find(@near_station_list+@n).lead_time %>
+      <%= @station.find(@near_station_list+@n).lead_time %>分
       <% @n=@n+1 %>
     </p>
   <% end %>
