@@ -25,28 +25,32 @@
   <%= @property.note %>
 </p>
 --------------------------
-<% if @property.near_stations.count != 0 %>
-  <% @property.near_stations.each do |f| %>
-    <h2>最寄り駅<%= @n+1 %></h2>
-    <p>
-      <strong>路線名:</strong>
-      <%= @station.find(@near_station_list+@n).line_name %>
-    </p>
+<% if @station.count != 0 %>
+  <% @station.each do |f| %>
+    <% if @station.find(@near_station_list+@n).line_name && @station.find(@near_station_list+@n).station_name != "" %>
+      <h2>最寄り駅<%= @n+1 %></h2>
+      <p>
+        <strong>路線名:</strong>
+        <%= @station.find(@near_station_list+@n).line_name %>
+      </p>
 
-    <p>
-      <strong>駅名:</strong>
-      <%= @station.find(@near_station_list+@n).station_name %>
-    </p>
+      <p>
+        <strong>駅名:</strong>
+        <%= @station.find(@near_station_list+@n).station_name %>
+      </p>
 
-    <p>
-      <strong>徒歩分数:</strong>
-      <%= @station.find(@near_station_list+@n).lead_time %>分
-      <% @n=@n+1 %>
-    </p>
+      <p>
+        <strong>徒歩分数:</strong>
+        <%= @station.find(@near_station_list+@n).lead_time %>分
+      </p>
+    <% end %>
+    <% @n=@n+1 %>
   <% end %>
 <% else %>
   <p>最寄り駅の情報がありません！</p>
 <% end %>
 
-<%= link_to '編集', edit_property_path(@property) %> |
-<%= link_to '戻る', properties_path %>
+<div>
+  <%= link_to '編集', edit_property_path(@property) %> |
+  <%= link_to '戻る', properties_path %>
+</div>

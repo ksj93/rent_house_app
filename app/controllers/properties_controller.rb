@@ -10,6 +10,7 @@ class PropertiesController < ApplicationController
   def show
     @n =0
     @near_station_list = Property.find(params[:id]).near_stations.first.id
+    @near_station_count = Property.find(params[:id]).near_stations.count
   end
 
   # GET /properties/new
@@ -21,6 +22,9 @@ class PropertiesController < ApplicationController
 
   # GET /properties/1/edit
   def edit
+    @n =0
+    @property_edit_new = Property.new
+    1.times {@property.near_stations.build}
   end
 
   # POST /properties or /properties.json

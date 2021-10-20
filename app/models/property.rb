@@ -5,5 +5,4 @@ class Property < ApplicationRecord
   validates :rent, presence:true,numericality: true
   validates :adress, presence:true
   validates :build_year, presence:true,numericality: true
-  validates :note, presence:true
 end
