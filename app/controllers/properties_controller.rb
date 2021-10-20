@@ -11,6 +11,7 @@ class PropertiesController < ApplicationController
     @n =0
     @near_station_list = Property.find(params[:id]).near_stations.first.id
     @near_station_count = Property.find(params[:id]).near_stations.count
+    @station_id_list =Property.find(params[:id]).near_stations.pluck(:id)
   end
 
   # GET /properties/new
