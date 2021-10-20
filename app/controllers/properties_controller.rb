@@ -9,9 +9,13 @@ class PropertiesController < ApplicationController
   # GET /properties/1 or /properties/1.json
   def show
     @n =0
-    @near_station_list = Property.find(params[:id]).near_stations.first.id
-    @near_station_count = Property.find(params[:id]).near_stations.count
     @station_id_list =Property.find(params[:id]).near_stations.pluck(:id)
+    if @station.count >1
+      if @station.last.line_name && @station.last.station_name == ""
+        @property.near_stations.last.destroy
+          redirect_to property_path
+      end
+    end
   end
 
   # GET /properties/new
@@ -25,7 +29,12 @@ class PropertiesController < ApplicationController
   def edit
     @n =0
     @property_edit_new = Property.new
-    1.times {@property.near_stations.build}
+    @station_id_list =Property.find(params[:id]).near_stations.pluck(:id)
+    if @station.count > 0
+      if @station.last.line_name && @station.last.station_name != ""
+        1.times {@property.near_stations.build}
+      end
+    end
   end
 
   # POST /properties or /properties.json
